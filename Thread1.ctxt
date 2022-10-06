@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Thread1
+comment1.params=message_buffer\ main_buffer
+comment1.target=Thread1(Buffer,\ Buffer)
+comment2.params=
+comment2.target=void\ run()
+numComments=3

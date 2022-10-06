@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Buffer
+comment1.params=sz
+comment1.target=Buffer(int)
+comment2.params=c
+comment2.target=void\ Put(char)
+comment3.params=
+comment3.target=char\ Get()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5
