@@ -71,8 +71,8 @@ public class Main extends Thread
          Thread3 t3 = new Thread3(secondary_buffer,permit);
 
          t1.start();
-         
          t2.start();
+         t3.start();
          
          while(t1.isAlive()){
                 System.out.println("Thread 1 waiting....");
@@ -82,7 +82,7 @@ public class Main extends Thread
             catch(Exception e)
             {}
             }
-         //t3.start();
+         
          
        // main_buffer = t1.copy
          

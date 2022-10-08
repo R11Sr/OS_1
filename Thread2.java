@@ -31,6 +31,7 @@ public class Thread2 extends Thread
              try
              {
                  permit.acquire();
+                 System.out.println("PERMIT @ T2: ");
                   System.out.println("Thread 2 Moving: " + mv);
                     secondary_buffer.Put(Character.toUpperCase(mv));
                 System.out.println("secondary_buffer after Put: " + secondary_buffer);
@@ -44,6 +45,7 @@ public class Thread2 extends Thread
              }
              finally{
                 permit.release();
+                System.out.println("PERMIT Release @ T2: ");
                 }
              
            

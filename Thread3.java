@@ -20,6 +20,32 @@ public class Thread3 extends Thread
 
     public void run()
     {
-        
+        Packet pack = new Packet();
+        try
+             {
+                 permit.acquire();
+                 System.out.println("PERMIT @ T3: " );
+                 char mv = secondary_buffer.Get();
+                System.out.println("secondary_buffer after Put: " + secondary_buffer);
+                if(!pack.full()){
+                    pack.Add(mv);
+                }
+                else{
+                System.out.println(pack);
+               // Packet pack = new Packet(); // recreate packet
+                }
+                
+            
+                try{Thread.currentThread().sleep(Main.STIME);}
+                catch(Exception e){e.printStackTrace();}
+             }
+             catch (InterruptedException ie)
+             {
+                 ie.printStackTrace();
+             }
+             finally{
+                permit.release();
+                System.out.println("PERMIT release @ T3: ");
+                }
     }
 }
