@@ -16,12 +16,16 @@ public class Main extends Thread
 {
     private static final int MAX_AVAILABLE = 1;
     private static final int MESSAGE_BUFFER_SIZE = 255;
+    private static final int MAIN_BUFFER_SIZE = 12;
+    public static final int STIME = 500;
     
     public static void main(String[] args)
     {
-        final Semaphore available = new Semaphore(MAX_AVAILABLE, true);
-        Buffer main_buffer = new Buffer(12);
+        final Semaphore permit = new Semaphore(MAX_AVAILABLE, true);
+        
+        Buffer main_buffer = new Buffer(MAIN_BUFFER_SIZE);
         Buffer message_buffer = new Buffer(MESSAGE_BUFFER_SIZE);
+        Buffer secondary_buffer = new Buffer(MAIN_BUFFER_SIZE);
                
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));  
           
@@ -50,6 +54,8 @@ public class Main extends Thread
                 message_buffer.Put(msg_arr[i]);
                 
             } 
+            System.out.println("message_buffer has full message");
+            
         }
         else
         {
@@ -57,22 +63,25 @@ public class Main extends Thread
             {
                 message_buffer.Put(msg_arr[i]);
             } 
+            System.out.println("message_buffer full");
         }
         
          Thread1 t1 = new Thread1(message_buffer,main_buffer);
-         Thread2 t2 = new Thread2(main_buffer);
-         //Thread3 t3 = new Thread3(main_buffer);
+         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,permit);
+         Thread3 t3 = new Thread3(secondary_buffer,permit);
 
          t1.start();
-        
-          
-         try{
-         t1.sleep(5000);   
+         
+         t2.start();
+         
+         while(t1.isAlive()){
+                System.out.println("Thread 1 waiting....");
+                try{
+         t1.sleep(500);   
             } 
             catch(Exception e)
             {}
-         
-         t2.start();
+            }
          //t3.start();
          
        // main_buffer = t1.copy

@@ -1,3 +1,4 @@
+import java.util.concurrent.Semaphore;
 
 /**
  * Write a description of class Thread3 here.
@@ -7,9 +8,14 @@
  */
 public class Thread3 extends Thread
 {
+    private Semaphore permit;
+    private Buffer secondary_buffer;
+    
     //default constructor
-    public Thread3()
+    public Thread3(Buffer sec_buffer,Semaphore permit)
     {
+        this.permit = permit;
+        this.secondary_buffer = sec_buffer;
     }
 
     public void run()

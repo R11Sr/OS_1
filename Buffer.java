@@ -4,6 +4,8 @@ class Buffer {
             private char [] buffer;
             private int count = 0, in = 0, out = 0;
             private  int BUFFER_SIZE;
+            
+            //constructor
             Buffer(int sz)
             {
                 BUFFER_SIZE = sz;
@@ -13,6 +15,7 @@ class Buffer {
             public synchronized void Put(char c) {
                  while(count == buffer.length) 
                  {
+                     System.out.println("Buffer Full...");
                       try { wait(); }
                       catch (InterruptedException e) { } 
                       finally { } 
@@ -21,16 +24,20 @@ class Buffer {
                  buffer[in] = c; 
                  in = (in + 1) % buffer.length; 
                  count++; 
-                 System.out.println("HHEELLPP ME" + count);
+                 System.out.println("count: " + count);
                  notify(); 
                  
             }
+            
     
             public synchronized char Get() {
                 
                  while (count == 0) 
                  {
-                      try { wait(); }
+                     System.out.println("Buffer Empty...");
+                      try { wait();
+                            
+                        }
                       catch (InterruptedException e) { } 
                       finally { } 
                  } 
@@ -38,8 +45,19 @@ class Buffer {
                  out = (out + 1) % buffer.length;
                  count--;
                  System.out.println("Consuming " + c + " ..."); 
+                 System.out.println("count: " + count);
                  notify(); 
+                 
                  return c;
+            }
+            
+            public boolean empty(){
+                if(buffer.length > 0) return false;
+                return true;
+            }
+            
+            public int length(){
+                return buffer.length;
             }
             
             public  String toString(){
