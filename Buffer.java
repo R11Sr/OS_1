@@ -52,12 +52,16 @@ class Buffer {
             }
             
             public boolean empty(){
-                if(buffer.length > 0) return false;
-                return true;
+                if(count <= 0) {return true;}
+                return false;
             }
             
             public int length(){
                 return buffer.length;
+            }
+            
+              public int amount(){
+                return count;
             }
             
             public  String toString(){

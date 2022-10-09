@@ -74,6 +74,19 @@ public class Main extends Thread
          t2.start();
          t3.start();
          
+         try
+         {
+             t2.join();
+             t3.join();
+         }
+         catch (InterruptedException ie)
+         {
+             ie.printStackTrace();
+         }
+         
+         
+        
+         
          while(t1.isAlive()){
                 System.out.println("Thread 1 waiting....");
                 try{
@@ -82,7 +95,15 @@ public class Main extends Thread
             catch(Exception e)
             {}
             }
-         
+            
+         while(t2.isAlive()){
+                System.out.println("Thread 2 waiting....");
+                try{
+         t2.sleep(500);   
+            } 
+            catch(Exception e)
+            {}
+            }
          
        // main_buffer = t1.copy
          

@@ -24,15 +24,13 @@ public class Thread2 extends Thread
 
     public void run() 
     {
-        System.out.println("Thread 2 Started");
         while(true){
             char mv = buff.Get();
-             System.out.println("buff_main after Get: " + buff);
              try
              {
-                 permit.acquire();
+                 permit.acquire(); 
                  System.out.println("PERMIT @ T2: ");
-                  System.out.println("Thread 2 Moving: " + mv);
+                  //System.out.println("Thread 2 Moving: " + mv);
                     secondary_buffer.Put(Character.toUpperCase(mv));
                 System.out.println("secondary_buffer after Put: " + secondary_buffer);
             
@@ -44,7 +42,7 @@ public class Thread2 extends Thread
                  ie.printStackTrace();
              }
              finally{
-                permit.release();
+                permit.release(); // equiv of semSignal()
                 System.out.println("PERMIT Release @ T2: ");
                 }
              

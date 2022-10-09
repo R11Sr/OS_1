@@ -8,7 +8,7 @@
 public class Packet
 {
     private final int MAX_PACKET_SIZE =5;
-    private static int packet_count = 0;
+    private static int packet_count = -1;
     private int charCount = 0;
     char content[] = new char[MAX_PACKET_SIZE];
 
@@ -17,6 +17,7 @@ public class Packet
      */
     public Packet()
     {
+        packet_count++;
     }
 
 
@@ -27,7 +28,7 @@ public class Packet
     
     public boolean full(){
     
-        if(charCount ==4){return true;}
+        if(charCount >= MAX_PACKET_SIZE){return true;}
         return false;
     }
     
@@ -52,7 +53,4 @@ public class Packet
         return packetInfo.toString();
     }
     
-    public void incrementPacketCount(){
-        packet_count++;
-    }
 }

@@ -23,21 +23,26 @@ public class Thread3 extends Thread
         Packet pack = new Packet();
         try
              {
-                 permit.acquire();
-                 System.out.println("PERMIT @ T3: " );
-                 char mv = secondary_buffer.Get();
-                System.out.println("secondary_buffer after Put: " + secondary_buffer);
-                if(!pack.full()){
-                    pack.Add(mv);
-                }
-                else{
-                System.out.println(pack);
-               // Packet pack = new Packet(); // recreate packet
-                }
                 
-            
-                try{Thread.currentThread().sleep(Main.STIME);}
-                catch(Exception e){e.printStackTrace();}
+                System.out.println("secondary_buffer contains:  " + secondary_buffer.amount()); 
+                if(!secondary_buffer.empty()){
+                     permit.acquire();
+                     System.out.println("PERMIT @ T3: " );
+                     char mv = secondary_buffer.Get();
+                    System.out.println("secondary_buffer after Put: " + secondary_buffer);
+                    if(!pack.full()){
+                        pack.Add(mv);
+                    }
+                    else{
+                    System.out.println(pack);
+                    pack = new Packet(); // recreate packet
+                    }
+                    
+                
+                    try{Thread.currentThread().sleep(Main.STIME);}
+                    catch(Exception e){e.printStackTrace();}
+                }
+
              }
              catch (InterruptedException ie)
              {
