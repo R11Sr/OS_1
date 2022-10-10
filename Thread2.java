@@ -26,7 +26,7 @@ public class Thread2 extends Thread
     {
         while(true){
             char mv = buff.Get();
-            /**
+            
             System.out.println("PERMIT @ T2: ");
             secondary_buffer.Put(Character.toUpperCase(mv));
             System.out.println("secondary_buffer after Put: " + secondary_buffer);
@@ -35,8 +35,17 @@ public class Thread2 extends Thread
                 catch(Exception e){e.printStackTrace();}
                 
                 
-            System.out.println("PERMIT Release @ T2: ");**/
-           
+            System.out.println("PERMIT Release @ T2: ");
+            
+            if(Main.threadStates[0] == true){
+            Main.threadStates[1] = true;
+            return;
+            }
+        
+            
+
+            
+               /**
              try
              {
                  permit_produce.acquire(); 
@@ -56,6 +65,7 @@ public class Thread2 extends Thread
                 permit_produce.release(); // equiv of semSignal()
                 //System.out.println("PERMIT Release @ T2: ");
                 }
+                **/
              
            
             

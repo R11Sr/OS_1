@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.Semaphore;
+import java.util.Arrays;
 
 
 public class Main extends Thread
@@ -18,9 +19,14 @@ public class Main extends Thread
     private static final int MESSAGE_BUFFER_SIZE = 255;
     private static final int MAIN_BUFFER_SIZE = 12;
     public static final int STIME = 500;
+    public static Boolean threadStates[] = new Boolean[3];
     
     public static void main(String[] args)
     {
+        
+        Arrays.fill(threadStates, Boolean.FALSE);
+        
+        
         Semaphore permit_prod = new Semaphore(MAX_AVAILABLE, true);
          Semaphore permit_con = new Semaphore(0, true);
         

@@ -42,5 +42,8 @@ public class Thread1 extends Thread
             catch(Exception e){e.printStackTrace();}
         }
         
+        Main.threadStates[0] = true; 
+        return;
+        
     }
 }
