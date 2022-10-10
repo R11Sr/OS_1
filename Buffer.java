@@ -4,12 +4,14 @@ class Buffer {
             private char [] buffer;
             private int count = 0, in = 0, out = 0;
             private  int BUFFER_SIZE;
+            private String name;
             
             //constructor
-            Buffer(int sz)
+            Buffer(int sz, String name)
             {
                 BUFFER_SIZE = sz;
-                 buffer = new char[BUFFER_SIZE];
+                buffer = new char[BUFFER_SIZE];
+                this.name = name; 
             }
  
             public synchronized void Put(char c) {
@@ -20,7 +22,7 @@ class Buffer {
                       catch (InterruptedException e) { } 
                       finally { } 
                  } 
-                 System.out.println("Producing " + c + " ...");
+                 System.out.println("Producing " + "(" +name +")" + c + " ...");
                  buffer[in] = c; 
                  in = (in + 1) % buffer.length; 
                  count++; 
@@ -44,7 +46,7 @@ class Buffer {
                  char c = buffer[out]; 
                  out = (out + 1) % buffer.length;
                  count--;
-                 System.out.println("Consuming " + c + " ..."); 
+                 System.out.println("Consuming " +"(" +name +")" + c + " ..."); 
                  System.out.println("count: " + count);
                  notify(); 
                  

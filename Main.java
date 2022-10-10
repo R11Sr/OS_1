@@ -19,14 +19,17 @@ public class Main extends Thread
     private static final int MAIN_BUFFER_SIZE = 12;
     public static final int STIME = 500;
     
+     public static Buffer main_buffer = new Buffer(MAIN_BUFFER_SIZE,"main_buffer");
+     public static Buffer message_buffer = new Buffer(MESSAGE_BUFFER_SIZE,"message_buffer");
+     public static Buffer secondary_buffer = new Buffer(MAIN_BUFFER_SIZE,"secondary_buffer");
+               
+    
     public static void main(String[] args)
     {
-        final Semaphore permit = new Semaphore(MAX_AVAILABLE, true);
+        Semaphore prod_permit= new Semaphore(MAX_AVAILABLE, true);
+        Semaphore  con_permit= new Semaphore(0, true);
         
-        Buffer main_buffer = new Buffer(MAIN_BUFFER_SIZE);
-        Buffer message_buffer = new Buffer(MESSAGE_BUFFER_SIZE);
-        Buffer secondary_buffer = new Buffer(MAIN_BUFFER_SIZE);
-               
+       
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));  
           
         String name;   
@@ -67,9 +70,9 @@ public class Main extends Thread
         }
         
          Thread1 t1 = new Thread1(message_buffer,main_buffer);
-         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,permit);
-         Thread3 t3 = new Thread3(secondary_buffer,permit);
-
+         MessageProcessingThread t2 = new MessageProcessingThread(prod_permit,new String("Thread2"));
+         
+         MessageProcessingThread t3 = new MessageProcessingThread(con_permit,"Thread3");
          t1.start();
          t2.start();
          t3.start();
@@ -95,7 +98,7 @@ public class Main extends Thread
             catch(Exception e)
             {}
             }
-            
+        /**    
          while(t2.isAlive()){
                 System.out.println("Thread 2 waiting....");
                 try{
@@ -104,6 +107,7 @@ public class Main extends Thread
             catch(Exception e)
             {}
             }
+            **/
          
        // main_buffer = t1.copy
          
