@@ -8,34 +8,38 @@ import java.util.concurrent.Semaphore;
  */
 public class Thread3 extends Thread
 {
-    private Semaphore permit;
+    private Semaphore permit_con;
     private Buffer secondary_buffer;
+    private Packet pack;
     
     //default constructor
     public Thread3(Buffer sec_buffer,Semaphore permit)
     {
-        this.permit = permit;
+        this.permit_con = permit;
         this.secondary_buffer = sec_buffer;
     }
 
     public void run()
     {
-        Packet pack = new Packet();
-        try
+        pack = new Packet();
+        while(true){
+                try
              {
                 
                 System.out.println("secondary_buffer contains:  " + secondary_buffer.amount()); 
                 if(!secondary_buffer.empty()){
-                     permit.acquire();
+                     permit_con.acquire();
                      System.out.println("PERMIT @ T3: " );
                      char mv = secondary_buffer.Get();
-                    System.out.println("secondary_buffer after Put: " + secondary_buffer);
+               
                     if(!pack.full()){
                         pack.Add(mv);
+                        System.out.println(pack);
                     }
                     else{
                     System.out.println(pack);
                     pack = new Packet(); // recreate packet
+                    pack.Add(mv);
                     }
                     
                 
@@ -49,8 +53,10 @@ public class Thread3 extends Thread
                  ie.printStackTrace();
              }
              finally{
-                permit.release();
+                permit_con.release();
                 System.out.println("PERMIT release @ T3: ");
                 }
+        }
+
     }
 }

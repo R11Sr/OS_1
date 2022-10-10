@@ -21,7 +21,8 @@ public class Main extends Thread
     
     public static void main(String[] args)
     {
-        final Semaphore permit = new Semaphore(MAX_AVAILABLE, true);
+        Semaphore permit_prod = new Semaphore(MAX_AVAILABLE, true);
+         Semaphore permit_con = new Semaphore(0, true);
         
         Buffer main_buffer = new Buffer(MAIN_BUFFER_SIZE);
         Buffer message_buffer = new Buffer(MESSAGE_BUFFER_SIZE);
@@ -67,8 +68,8 @@ public class Main extends Thread
         }
         
          Thread1 t1 = new Thread1(message_buffer,main_buffer);
-         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,permit);
-         Thread3 t3 = new Thread3(secondary_buffer,permit);
+         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,permit_prod);
+         Thread3 t3 = new Thread3(secondary_buffer,permit_con);
 
          t1.start();
          t2.start();
