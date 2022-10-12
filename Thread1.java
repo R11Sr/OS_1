@@ -35,19 +35,20 @@ public class Thread1 extends Thread
             char mv = buff_msg.Get();
            
             buff_main.Put(mv);
-            System.out.println("buff_main after Put: " + buff_main);
+           //System.out.println("buff_main after Put: " + buff_main);
+            
             try{
                 Thread.currentThread().sleep(Main.STIME);
             }
             catch(Exception e){e.printStackTrace();}
             
-            System.out.println("during t1 exe " + buff_main);
+            //System.out.println("during t1 exe " + buff_main);
         }
         
         
         
         Main.threadStates[0] = true; 
-         System.out.println("/*/*/*/* T1 VALUE OF  Main.threadStates[0]: " + Main.threadStates[0]);
+         //System.out.println("/*/*/*/* T1 VALUE OF  Main.threadStates[0]: " + Main.threadStates[0]);
         
         return;
         

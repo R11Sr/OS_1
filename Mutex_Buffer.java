@@ -27,7 +27,7 @@ class Mutex_Buffer {
                  } 
                  
                  try{
-                     produce.acquire();
+                     produce.acquire(); //semWait()
                      System.out.println("Producing " + c + " ...");
                      buffer[in] = c; 
                      in = (in + 1) % buffer.length; 
@@ -37,7 +37,7 @@ class Mutex_Buffer {
                     }
                  catch(InterruptedException ex){}
                  finally{
-                    produce.release();
+                    produce.release(); //semSignal()
                     }
 
                  notify(); 

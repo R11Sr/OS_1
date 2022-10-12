@@ -29,9 +29,6 @@ public class Main extends Thread
         Arrays.fill(threadStates, Boolean.FALSE);
         
         
-        //Semaphore permit_prod = new Semaphore(MAX_AVAILABLE, true);
-       //  Semaphore permit_con = new Semaphore(0, true);
-        
         Mutex_Buffer main_buffer = new Mutex_Buffer(MAIN_BUFFER_SIZE,"main_buffer");
         Mutex_Buffer message_buffer = new Mutex_Buffer(MESSAGE_BUFFER_SIZE,"message_buffer");
         Mutex_Buffer secondary_buffer = new Mutex_Buffer(MAIN_BUFFER_SIZE,"secondary_buffer");
@@ -82,21 +79,8 @@ public class Main extends Thread
          t1.start();
          t2.start();
          t3.start();
-         
-        /**
-         try
-         {
-             t2.join();
-             t3.join();
-         }
-         catch (InterruptedException ie)
-         {
-             ie.printStackTrace();
-         }
-         **/
-         
         
-         
+         /**
          while(t1.isAlive()){
                 System.out.println("Thread 1 waiting....");
                 try{
@@ -125,6 +109,7 @@ public class Main extends Thread
             {}
             }
          
+            **/
        // main_buffer = t1.copy
          
          

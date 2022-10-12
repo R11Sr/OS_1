@@ -33,7 +33,7 @@ public class Thread3 extends Thread
                         System.out.println(pack);
                     }
                     else{
-                    System.out.println(pack);
+                    //System.out.println(pack);
                     pack = new Packet(); // recreate packet
                     pack.Add(mv);
                     }
@@ -42,7 +42,10 @@ public class Thread3 extends Thread
                     try{Thread.currentThread().sleep(Main.STIME);}
                     catch(Exception e){e.printStackTrace();}
                 }
-                System.out.println(pack);
+                else{
+                    System.out.println(pack);
+                }
+                
                 
                 try{Thread.currentThread().sleep(Main.STIME);}
                     catch(Exception e){e.printStackTrace();}
@@ -52,44 +55,6 @@ public class Thread3 extends Thread
                     return;
                 }
 
-                
-                
-                
-                
-                /**
-                try
-             {
-                
-                System.out.println("secondary_buffer contains:  " + secondary_buffer.amount()); 
-                if(!secondary_buffer.empty()){
-                     permit_con.acquire();
-                     System.out.println("PERMIT @ T3: " );
-                     char mv = secondary_buffer.Get();
-               
-                    if(!pack.full()){
-                        pack.Add(mv);
-                        System.out.println(pack);
-                    }
-                    else{
-                    System.out.println(pack);
-                    pack = new Packet(); // recreate packet
-                    pack.Add(mv);
-                    }
-                    
-                
-                    try{Thread.currentThread().sleep(Main.STIME);}
-                    catch(Exception e){e.printStackTrace();}
-                }
-
-             }
-             catch (InterruptedException ie)
-             {
-                 ie.printStackTrace();
-             }
-             finally{
-                permit_con.release();
-                System.out.println("PERMIT release @ T3: ");
-                }**/
         }
 
     }
