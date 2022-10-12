@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Thread2
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Thread2\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=main_buffer\ sec_buffer\ permit
-comment1.target=Thread2(Buffer,\ Buffer,\ java.util.concurrent.Semaphore)
+comment1.params=main_buffer\ sec_buffer\ msg_buffer
+comment1.target=Thread2(Mutex_Buffer,\ Mutex_Buffer,\ Mutex_Buffer)
 comment2.params=
 comment2.target=void\ run()
 numComments=3

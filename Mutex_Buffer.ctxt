@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Mutex_Buffer
+comment1.params=sz\ name
+comment1.target=Mutex_Buffer(int,\ java.lang.String)
+comment2.params=c
+comment2.target=void\ Put(char)
+comment3.params=
+comment3.target=char\ Get()
+comment4.params=
+comment4.target=boolean\ empty()
+comment5.params=
+comment5.target=int\ length()
+comment6.params=
+comment6.target=int\ amount()
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8

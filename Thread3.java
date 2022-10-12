@@ -9,14 +9,14 @@ import java.util.concurrent.Semaphore;
 public class Thread3 extends Thread
 {
     private Semaphore permit_con;
-    private Buffer secondary_buffer;
+    private Mutex_Buffer secondary_buffer;
     private Packet pack;
     
     //default constructor
-    public Thread3(Buffer sec_buffer,Semaphore permit)
+    public Thread3(Mutex_Buffer sec_buffer)
     {
-        this.permit_con = permit;
-        this.secondary_buffer = sec_buffer;
+        //this.permit_con = permit;
+       this.secondary_buffer = sec_buffer;
     }
 
     public void run()
@@ -44,7 +44,10 @@ public class Thread3 extends Thread
                 }
                 System.out.println(pack);
                 
-                if(Main.threadStates[1] == true)
+                try{Thread.currentThread().sleep(Main.STIME);}
+                    catch(Exception e){e.printStackTrace();}
+                
+                if(Main.threadStates[1] == true && secondary_buffer.empty())
                 {
                     return;
                 }

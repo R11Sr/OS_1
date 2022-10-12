@@ -21,18 +21,20 @@ public class Main extends Thread
     public static final int STIME = 500;
     public static Boolean threadStates[] = new Boolean[3];
     
+    
+    
     public static void main(String[] args)
     {
         
         Arrays.fill(threadStates, Boolean.FALSE);
         
         
-        Semaphore permit_prod = new Semaphore(MAX_AVAILABLE, true);
-         Semaphore permit_con = new Semaphore(0, true);
+        //Semaphore permit_prod = new Semaphore(MAX_AVAILABLE, true);
+       //  Semaphore permit_con = new Semaphore(0, true);
         
-        Buffer main_buffer = new Buffer(MAIN_BUFFER_SIZE);
-        Buffer message_buffer = new Buffer(MESSAGE_BUFFER_SIZE);
-        Buffer secondary_buffer = new Buffer(MAIN_BUFFER_SIZE);
+        Mutex_Buffer main_buffer = new Mutex_Buffer(MAIN_BUFFER_SIZE,"main_buffer");
+        Mutex_Buffer message_buffer = new Mutex_Buffer(MESSAGE_BUFFER_SIZE,"message_buffer");
+        Mutex_Buffer secondary_buffer = new Mutex_Buffer(MAIN_BUFFER_SIZE,"secondary_buffer");
                
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));  
           
@@ -74,13 +76,14 @@ public class Main extends Thread
         }
         
          Thread1 t1 = new Thread1(message_buffer,main_buffer);
-         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,permit_prod);
-         Thread3 t3 = new Thread3(secondary_buffer,permit_con);
+         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,message_buffer);
+         Thread3 t3 = new Thread3(secondary_buffer);
 
          t1.start();
          t2.start();
          t3.start();
          
+        /**
          try
          {
              t2.join();
@@ -90,7 +93,7 @@ public class Main extends Thread
          {
              ie.printStackTrace();
          }
-         
+         **/
          
         
          
@@ -107,6 +110,16 @@ public class Main extends Thread
                 System.out.println("Thread 2 waiting....");
                 try{
          t2.sleep(500);   
+            } 
+            catch(Exception e)
+            {}
+            }
+            
+                 
+         while(t3.isAlive()){
+                System.out.println("Thread 3 waiting....");
+                try{
+         t3.sleep(500);   
             } 
             catch(Exception e)
             {}
