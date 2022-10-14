@@ -13,7 +13,6 @@ public class Thread2 extends Thread
     private Mutex_Buffer buff;
     private Mutex_Buffer secondary_buffer;
     private Mutex_Buffer msg_buff;
-    private Semaphore permit_produce;
     
     //default constructor
        public Thread2(Mutex_Buffer main_buffer,Mutex_Buffer sec_buffer, Mutex_Buffer msg_buffer)
@@ -21,7 +20,7 @@ public class Thread2 extends Thread
         this.buff = main_buffer;
         this.secondary_buffer = sec_buffer;
         this.msg_buff = msg_buffer;
-      //  this.permit_produce = permit;        
+      
     }
 
     public void run() 
@@ -31,12 +30,12 @@ public class Thread2 extends Thread
             if(msg_buff.empty() && buff.empty()){
                 Main.threadStates[1] = true;
                 //System.out.println("/*/*/*/* THE VALUE OF  Main.threadStates[1]: " + Main.threadStates[1]);
-                return;
+                return; //thread dies
             }
             
             
             char mv = buff.Get();
-            
+            //char mv = 'a';
             secondary_buffer.Put(Character.toUpperCase(mv));
             //System.out.println("secondary_buffer after Put: " + secondary_buffer);
             

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+
 public class Thread1 extends Thread
 {
     private String messageFraction;
@@ -50,7 +51,7 @@ public class Thread1 extends Thread
         Main.threadStates[0] = true; 
          //System.out.println("/*/*/*/* T1 VALUE OF  Main.threadStates[0]: " + Main.threadStates[0]);
         
-        return;
+        return; //thread dies
         
     }
 }

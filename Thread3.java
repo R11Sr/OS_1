@@ -25,15 +25,16 @@ public class Thread3 extends Thread
         while(true){
             
                 System.out.println("secondary_buffer contains:  " + secondary_buffer.amount()); 
+                System.out.println("secondary_buffer has the following:  " + secondary_buffer); 
                 if(!secondary_buffer.empty()){
                      char mv = secondary_buffer.Get();
                
                     if(!pack.full()){
                         pack.Add(mv);
-                        System.out.println(pack);
+                        System.out.println(pack); //debugging
                     }
                     else{
-                    //System.out.println(pack);
+                    System.out.println(pack);
                     pack = new Packet(); // recreate packet
                     pack.Add(mv);
                     }
@@ -50,10 +51,11 @@ public class Thread3 extends Thread
                 try{Thread.currentThread().sleep(Main.STIME);}
                     catch(Exception e){e.printStackTrace();}
                 
+                 
                 if(Main.threadStates[1] == true && secondary_buffer.empty())
                 {
-                    return;
-                }
+                    return; //thread dies
+                } 
 
         }
 

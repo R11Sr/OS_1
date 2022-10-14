@@ -18,6 +18,7 @@ class Mutex_Buffer {
             }
  
             public synchronized void Put(char c) {
+                
                  while(count == buffer.length) 
                  {
                      System.out.println("Buffer Full...");
@@ -59,7 +60,7 @@ class Mutex_Buffer {
                  char c;
                  
                    try{
-                        consume.acquire();
+                        consume.acquire(); //semWait()
                         c = buffer[out];
                         out = (out + 1) % buffer.length;
                         count--;
@@ -73,7 +74,7 @@ class Mutex_Buffer {
                     }
                     finally{
                     
-                    consume.release();
+                    consume.release(); //semSignal()
                 }              
                 
                  notify(); 

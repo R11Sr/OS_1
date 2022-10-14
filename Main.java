@@ -1,8 +1,12 @@
 
 /**
  * Write a description of class Main here.
- *
- * @author (your name)
+ *  The start of the exection of the assignment
+ *  It allows the user to enter a sequnce if characters  
+ *  Then produces a sequence of packets from them with the
+ *  aid of two buffers
+ * 
+ * @author Rasheed senior
  * @version (a version number or a date)
  */
 
@@ -15,66 +19,82 @@ import java.util.Arrays;
 
 public class Main extends Thread
 {
-    private static final int MAX_AVAILABLE = 1;
-    private static final int MESSAGE_BUFFER_SIZE = 255;
-    private static final int MAIN_BUFFER_SIZE = 12;
-    public static final int STIME = 500;
-    public static Boolean threadStates[] = new Boolean[3];
+ 
+    private static final int MAX_MESSSAGE_LENGTH = 255; // Maximum length of the message 
+    private static final int MAIN_BUFFER_SIZE = 12; // Maximum size of the main and secondary buffer.
+    public static final int STIME = 500; // sleep time for threads to follow outputs as they appear
+    
+    // Array of boolean values that each thread assigns its corresponding element to false once it has completed execution and is to die  
+    public static Boolean threadStates[] = new Boolean[3]; 
     
     
     
     public static void main(String[] args)
     {
         
-        Arrays.fill(threadStates, Boolean.FALSE);
+        Arrays.fill(threadStates, Boolean.FALSE); // fill the array with false values
         
+        //array of characters that holds the message once accepted
+        Mutex_Buffer message_reservoir = new Mutex_Buffer(MAX_MESSSAGE_LENGTH,"message_reservoir"); 
         
+        //main buffer 
         Mutex_Buffer main_buffer = new Mutex_Buffer(MAIN_BUFFER_SIZE,"main_buffer");
-        Mutex_Buffer message_buffer = new Mutex_Buffer(MESSAGE_BUFFER_SIZE,"message_buffer");
+        
+        //second buffer
         Mutex_Buffer secondary_buffer = new Mutex_Buffer(MAIN_BUFFER_SIZE,"secondary_buffer");
                
+        // accept the message from std input
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));  
           
-        String name;   
+        String message; // string to store user input  
         
 
          
         System.out.println("Enter the text to be converted");
         try{
         // Reading data using readLine
-         name = reader.readLine();
+         message = reader.readLine();
         }
 
         catch(IOException e)
         {
-            name = "An error has occured";
+            message = "An error has occured";
         }
-        // Printing the read line
-        System.out.println(name); 
         
-        char[] msg_arr = name.toCharArray();
-        if(msg_arr.length <= MESSAGE_BUFFER_SIZE)
+        //Confirms the message to the user
+        System.out.println(message); 
+        
+        
+        char[] msg_arr = message.toCharArray(); // converts message to character array
+        
+        /** loop moves the message to the reservoir so that it can be read 
+         * from one character at a time until completion.
+         */
+        
+        if(msg_arr.length <= MAX_MESSSAGE_LENGTH)
         {
            for(int i =0; i<= msg_arr.length - 1; i++)
             {
-                message_buffer.Put(msg_arr[i]);
+                message_reservoir.Put(msg_arr[i]);
                 
             } 
-            System.out.println("message_buffer has full message");
+            System.out.println("message_reservoir has full message");
             
         }
         else
         {
-           for(int i =1; i<= MESSAGE_BUFFER_SIZE; i++)
+           for(int i =1; i<= MAX_MESSSAGE_LENGTH; i++)
             {
-                message_buffer.Put(msg_arr[i]);
+                message_reservoir.Put(msg_arr[i]);
             } 
-            System.out.println("message_buffer full");
+            System.out.println("message_reservoir full");
         }
         
-         Thread1 t1 = new Thread1(message_buffer,main_buffer);
-         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,message_buffer);
-         Thread3 t3 = new Thread3(secondary_buffer);
+        
+        //start the three threads and pass a reference the reqiured resource as parameters
+         Thread1 t1 = new Thread1(message_reservoir,main_buffer); // passes a reference to the message and the main buffer
+         Thread2 t2 = new Thread2(main_buffer,secondary_buffer,message_reservoir); // pass reference to the reservoir, the main and secondary message 
+         Thread3 t3 = new Thread3(secondary_buffer); // pass a reference to the second buffer
 
          t1.start();
          t2.start();
@@ -110,8 +130,6 @@ public class Main extends Thread
             }
          
             **/
-       // main_buffer = t1.copy
-         
          
     }
 
