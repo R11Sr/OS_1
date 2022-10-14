@@ -7,7 +7,7 @@
  *  aid of two buffers
  * 
  * @author Rasheed senior
- * @version (a version number or a date)
+ * @version 1.0.0
  */
 
 import java.io.BufferedReader;

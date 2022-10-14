@@ -1,17 +1,25 @@
 #BlueJ class context
 comment0.target=Mutex_Buffer
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Buffer\ here.\r\n\ \ The\ Buffer\ class\ handles\ the\ syncronisation\ of\ the\ threads\r\n\ \ It\ uses\ a\ monitor\ to\ pause\ the\ producer\ threads\ when\ the\ \ buffers\ are\ full.\r\n\ \ This\ is\ accomplished\ using\ syncronised\ methods,\ allowing\ to\ make\ use\ of\ the\ wait()\r\n\ \ and\ notify()\ functions\ in\ Java.\r\n\ \ \r\n\ \ The\ two\ semaphores\ that\ are\ used\ to\ acheive\ mutual\ exclusion\ of\ thread\ 2\ and\ thread\ 3.\ \r\n\ \r\n\ @author\ Rasheed\ senior\r\n\ @version\ 1.0.0\r\n
 comment1.params=sz\ name
 comment1.target=Mutex_Buffer(int,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Buffer\r\n
 comment2.params=c
 comment2.target=void\ Put(char)
+comment2.text=\r\n\ Method\ to\ put\ put\ character\ into\ buffer\r\n\r\n\ @param\ \ c\ \ character\ to\ put\ store\ in\ the\ collection\r\n\ @return\ \ \ \ none\r\n
 comment3.params=
 comment3.target=char\ Get()
+comment3.text=\r\n\ This\ method\ returns\ a\ character\ from\ the\ buffer\ if\r\n\ is\ not\ empty\r\n\ \ \ \ \ \ \ \ \r\n\ @return\ \ character\ from\ the\ buffer\r\n
 comment4.params=
 comment4.target=boolean\ empty()
+comment4.text=\r\n\ This\ method\ returns\ a\ boolean\ value\r\n\ true\ if\ the\ buffer\ is\ empty\ \r\n\ false\ if\ the\ buffer\ has\ contents\r\n\ \ \ \ \ \ \ \ \r\n\ @return\ \ state\ of\ the\ buffer,\ if\ it\ is\ full\ or\ not\r\n
 comment5.params=
 comment5.target=int\ length()
+comment5.text=\r\n\ This\ method\ returns\ size\ of\ the\ buffer\ \r\n\ \ \ \ \ \ \ \ \r\n\ @return\ \ buffer\ size\r\n
 comment6.params=
 comment6.target=int\ amount()
+comment6.text=\r\n\ This\ method\ returns\ amount\ of\ characters\ in\ the\ buffer\r\n\ \ \ \ \ \ \ \ \r\n\ @return\ \ amount\ of\ buffer\ elements\r\n
 comment7.params=
 comment7.target=java.lang.String\ toString()
+comment7.text=\r\n\ This\ method\ returns\ String\ representation\ of\ the\ buffer\r\n\ \ \ \ \ \ \ \ \r\n\ @return\ \ String\ of\ buffer\r\n
 numComments=8

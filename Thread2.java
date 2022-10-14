@@ -1,18 +1,18 @@
 import java.util.concurrent.Semaphore;
 
 /**
- * Write a description of class Thread2 here.
+ * Thread 2 is responsible for moving the characters one at a time
+ * from the main buffer, captialises it, then places it in the second buffer
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Rasheed R. Senior
+ * @version 1.0.0
  */
 public class Thread2 extends Thread
 {
 
-    //default constructor
-    private Mutex_Buffer buff;
-    private Mutex_Buffer secondary_buffer;
-    private Mutex_Buffer msg_buff;
+    private Mutex_Buffer buff; // reference to the main buffer
+    private Mutex_Buffer secondary_buffer; // reference to the second buffer
+    private Mutex_Buffer msg_buff; // reference to message received
     
     //default constructor
        public Thread2(Mutex_Buffer main_buffer,Mutex_Buffer sec_buffer, Mutex_Buffer msg_buffer)
@@ -25,8 +25,12 @@ public class Thread2 extends Thread
 
     public void run() 
     {
+        /**
+         Continuous loop   
+        **/
         while(true){
             
+            // Thread terminates once the message is empty and the main buffer is empty
             if(msg_buff.empty() && buff.empty()){
                 Main.threadStates[1] = true;
                 //System.out.println("/*/*/*/* THE VALUE OF  Main.threadStates[1]: " + Main.threadStates[1]);
@@ -35,23 +39,16 @@ public class Thread2 extends Thread
             
             
             char mv = buff.Get();
-            //char mv = 'a';
-            secondary_buffer.Put(Character.toUpperCase(mv));
+            /**
+               Converts the character received from the main buffer to Upper case and places it in second buffer
+               **/
+            secondary_buffer.Put(Character.toUpperCase(mv)); 
             //System.out.println("secondary_buffer after Put: " + secondary_buffer);
             
             try{Thread.currentThread().sleep(Main.STIME);}
                 catch(Exception e){e.printStackTrace();}
                 
-            /**
-            if(msg_buff.empty() && buff.empty()){
-            Main.threadStates[1] = true;
-            System.out.println("---- THE VALUE OF  Main.threadStates[1]: " + Main.threadStates[1]);
-            return;
-            }
-            else{
-                 System.out.println("---- THE VALUE OF  Main.threadStates[1]: " + Main.threadStates[1]);
-            }
-            **/    
+   
         }        
     }
 }

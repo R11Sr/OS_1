@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class Thread1 here.
+ * Thread 1 is to move the message one character at a time from the message to 
+ * the main buffer
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Rasheed R. Senior
+ * @version 1.0.0
  */
 
 
@@ -15,8 +16,8 @@ import java.util.Scanner;
 
 public class Thread1 extends Thread
 {
-    private String messageFraction;
-    private Mutex_Buffer buff_msg,buff_main;
+    private Mutex_Buffer buff_msg; // reference to user message
+    private Mutex_Buffer buff_main; // reference to main buffer
     
     
     //default constructor
@@ -30,12 +31,17 @@ public class Thread1 extends Thread
     public void run() 
     {
         System.out.println("Thread 1 Started");
+        /**
+           While the user message is not empty read a character at a time
+           and place in the main buffer.
+           **/
         
         while(!buff_msg.empty()){
             
             char mv = buff_msg.Get();
            
-            buff_main.Put(mv);
+            buff_main.Put(mv);// put char in the main buffer
+            
            //System.out.println("buff_main after Put: " + buff_main);
             
             try{
@@ -43,7 +49,6 @@ public class Thread1 extends Thread
             }
             catch(Exception e){e.printStackTrace();}
             
-            //System.out.println("during t1 exe " + buff_main);
         }
         
         

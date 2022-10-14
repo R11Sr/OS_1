@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Thread3
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Thread3\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Thread\ 3\ is\ responsible\ for\ taking\ character\ from\ the\ secondary\ buffer\r\n\ one\ at\ a\ time\ and\ to\ create\ packets\r\n\r\n\ @author\ Rasheed\ R.\ Senior\r\n\ @version\ 1.0.0\r\n
 comment1.params=sec_buffer
 comment1.target=Thread3(Mutex_Buffer)
 comment2.params=
