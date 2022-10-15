@@ -1,15 +1,19 @@
 #BlueJ class context
 comment0.target=Packet
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Packet\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Thread\ 3\ takes\ capitalised\ characters\ and\ add\ them\ to\ packets.\r\n\ the\ packet\ then\ formats\ the\ characters\ and\ when\ printing\r\n\ displays\ the\ amount\ of\ packets\ generated\ upon\ till\ and\ including\ the\ \r\n\ current,\ the\ amount\ of\ characters\ in\ the\ current\ packet\ and\ the\ characters\ \r\n\ themselves.\r\n\r\n\ @author\ Rasheed\ R.\ Senior\r\n\ @version\ 1.0.0\r\n
 comment1.params=
 comment1.target=Packet()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Packet\r\n
 comment2.params=ch
 comment2.target=void\ Add(char)
+comment2.text=\r\n\ This\ method\ adds\ a\ captialised\ buffer\ to\ the\ packet\r\n\ \ \ \ \ \ \ \ \r\n\ @param\ ch\ \ capatilized\ letter\ to\ add\ to\ the\ packet\r\n
 comment3.params=
 comment3.target=boolean\ full()
+comment3.text=\r\n\ Inquires\ to\ see\ if\ the\ buffer\ is\ full\ or\ not\r\n\ \ \ \ \ \ \ \ \r\n\ @return\ state\ of\ the\ buffer,\ full\ or\ not\r\n
 comment4.params=
 comment4.target=int\ quantity()
+comment4.text=\r\n\ Inquries\ of\ the\ amount\ of\ items\ in\ the\ buffer\r\n\ \ \ \ \ \ \ \ \r\n\ @return\ amount\ of\ characters\ in\ the\ packet\r\n
 comment5.params=
 comment5.target=java.lang.String\ toString()
+comment5.text=\r\n\ This\ method\ returns\ the\ packet\ in\ the\ desired\ human\ readable\ format\r\n\ \ \ \ \ \ \ \ \r\n\ @return\ the\ packet\ as\ s\ string\r\n
 numComments=6
